@@ -16,6 +16,7 @@ fun post(ownerId: Long,fromId: Long,createBy: Long,date: Long,text: String,reply
 }
 fun postUpdate(id:Long,ownerId: Long,fromId: Long,createBy: Long,date: Long = 0L,text: String,replyOwnerId: Long,friendsOnly: Boolean,comments: Comments,copyright: Copyright,likes:Likes,reports: Reports,views: Views, postType: String,signerID: Long,canPin: Boolean,canDelete: Boolean,canEdit: Boolean,isPinned: Boolean,markedAsAds: Boolean,isFavorite: Boolean,donut: Donut,postponedID: Long){
     val editPost = Post(id,ownerId,fromId,createBy,0L,text,replyOwnerId,friendsOnly,comments,copyright,likes,reports,views, postType,signerID,canPin,canDelete,canEdit,isPinned,markedAsAds,isFavorite,donut,postponedID)
+    println(WallService.editPost(editPost))
 }
 
 object WallService{
@@ -37,7 +38,6 @@ object WallService{
         for((index,oldPost) in posts.withIndex()){
             if (oldPost.id == post.id) {
                 posts.set(index,post.copy(date = oldPost.date))
-                println(posts.get(index))
                 return true
             }
         }
